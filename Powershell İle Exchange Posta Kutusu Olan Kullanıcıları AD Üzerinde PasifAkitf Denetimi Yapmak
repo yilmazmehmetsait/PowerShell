@@ -1,0 +1,9 @@
+$dbusers = Get-Mailbox -Database "DB ismi" | select samaccountname
+
+foreach ($user in $dbusers)
+
+{
+
+Get-ADUser  -Identity $user.SamAccountName -Properties * | where {$_.Enabled -eq $false veya $true} | select name
+
+}
