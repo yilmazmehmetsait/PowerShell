@@ -1,0 +1,28 @@
+$Users = Get-ADUser -filter * -SearchBase "Distinguished Name" -Properties MemberOf
+
+
+#Grup üyeliğinden çıkarmak
+
+ForEach ($User In $Users)
+{
+    $Groups = -join @($User.memberOf)
+
+    If ($Groups -like '*grup*')
+    {
+        Remove-ADGroupMember -Identity "Grup" -Members $user.SamAccountName -Confirm:$false
+    }
+
+}
+
+#Grup üyeliğine ekleme
+
+ForEach ($User In $Users)
+{
+    $Groups = -join @($User.memberOf)
+
+    If ($Groups -notlike '*grup*')
+    {
+        Add-ADGroupMember -Identity  "grup" -Members $user.SamAccountName -Confirm:$false
+    }
+
+}
