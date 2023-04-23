@@ -1,0 +1,2 @@
+Import-Module ActiveDirectory
+Import-Csv .\SiteDetails.csv | ForEach-Object{New-ADReplicationSubnet -Site $_.Site -Name $_.Subnet -Description $_.Description}
