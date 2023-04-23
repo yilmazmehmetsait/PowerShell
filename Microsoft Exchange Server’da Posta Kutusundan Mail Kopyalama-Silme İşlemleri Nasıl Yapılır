@@ -1,0 +1,8 @@
+New-ManagementRoleAssignment -Role "Mailbox Import Export" -User kulanıcı adı # Komut ile kullanıcıya mailbox import/export yetkisi veriyoruz.
+
+Search-Mailbox -Identity "içinde arama yapılacak mail adresi" -SearchQuery 'From:"mailin kimden geldiği veya "To" parametresi ile kime gönderildiği" AND subject: "mailin başlığı, "body" parametresi ile mail içeriğinde de arama yapabiliriz"' -Targetmailbox "mail kutusunda bulunan mailin gönderileceği posta kutusu" -TargetFolder "gönderilecek posta kutusundaki klasör"
+Örnek kullanım
+
+New-ManagementRoleAssignment -Role "Mailbox Import Export" -User $env:USERNAME
+
+Search-Mailbox -Identity "kaynakmail@test.com" -SearchQuery 'From:"gondericimail@test.com" AND subject: "beni ara"' -Targetmailbox "hedef@test.com" -TargetFolder "test klasörü" --DeleteContent # -DeleteContent bu parametre hedef posta kutusundan maili siler.
