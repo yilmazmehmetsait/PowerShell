@@ -1,0 +1,11 @@
+$ad_dis_users=Get-ADUser -Filter {Enabled -eq $false}
+
+foreach ($nm in $ad_dis_users)
+
+{
+
+$nm1=$nm.samAccountName
+
+Set-ADUser $nm1 -Add @{msexchhidefromaddresslists=$true}
+
+}
