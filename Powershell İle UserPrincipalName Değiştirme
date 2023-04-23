@@ -1,0 +1,5 @@
+$liste=get-aduser -Identity kullanıcı adını yazınız -Properties EmailAddress
+
+$rep=@();$liste | %{IF($_.EmailAddress -ne $_.userprincipalname) {Write-Host $_.name;$rep+=$_}}
+
+$rep | %{IF($_.EmailAddress -ne $_.userprincipalname) {Write-Host $_.name;Set-ADUser -Identity $_.distinguishedName -UserPrincipalName $_.EmailAddress}}
