@@ -1,0 +1,4 @@
+$OUs = 'OU=mail,DC=lab,DC=local'
+
+Foreach ($OU in $OUs) {
+   Get-Mailbox -OrganizationalUnit $OU | where {$_.RecipientTypeDetails -like "SharedMailbox"}
